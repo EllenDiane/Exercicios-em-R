@@ -1,0 +1,22 @@
+VerificarNumero <- function(x){
+  if(is.numeric(x)){
+    if(x%%2 == 0){
+      print("O número é par")
+    }
+    else{
+      print("O número é impar")
+    }
+    if(x > 0){
+      print("e positivo")
+    }
+    else if(x < 0){
+      print("e negativo")
+    }
+    else if(x == 0){
+      print("Zero/nulo")
+    }
+  }
+  if(is.character(x)){
+    print("Não é um número")
+  }
+}

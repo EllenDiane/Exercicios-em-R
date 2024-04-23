@@ -1,0 +1,91 @@
+setwd("C:/Users/ellen/Downloads")
+dat <- read.csv("Notas_teste.csv")[, -1]
+View(dat)
+
+summary(dat)
+
+ReplacedByTen <- function(x){
+  return(min(10, x))
+}
+
+dat$P1 <- sapply(dat$P1, ReplacedByTen)
+dat$P2 <- sapply(dat$P2, ReplacedByTen)
+
+media_na <- (dat$P1 + dat$P2 + (dat$Listas * 10))/3
+dat <- cbind(dat, "P1_nona" = dat$P1, "P2_nona" = dat$P2)
+View(dat)
+
+dat <- cbind(dat,"Mediana" = media_na)
+
+dat$P1_nona[is.na(dat$P1_nona)] <- 0
+dat$P2_nona[is.na(dat$P2_nona)] <- 0
+dat$P2[is.na(dat$P2)] <- 0
+dat$P1[is.na(dat$P1)] <- 0
+dat$Mediana[is.na(Mediana)] <- 0
+View(dat)
+
+media_final <- (dat$P1_nona + dat$P2_nona + (dat$Listas))
+
+summary(dat)
+
+dat <- cbind(dat,"Media" = media_final)
+View(dat)
+
+
+
+nota2conceito <- function(x){
+  if (x >= 8.5){
+    return("A")
+  } else if((x >= 7) & (x < 8.5)){
+    return("B")
+  } else if((x >= 5) & (x < 7)){
+    return("C")
+  } else if((x >= 4.5) &(x < 5)){
+    return("D")
+  } else if (x < 4.5){
+    return("F")
+  }
+}
+  
+
+  dat$Conceito <- sapply(dat$Media, nota2conceito)
+  dat <- cbind(dat, "Conceito" = Conceito)
+  View(dat)
+  
+  hist(dat$P1, breaks = 0:12)
+  hist(dat$P2, breaks = 0:12, add = T)
+  
+  hist(dat$P1, breaks = 0:12, xlim = c(0,12), col = "red")
+  
+  library(ggplot2)
+  hist(dat$P2, breaks = 0:12, add = T, col = "blue")
+  
+  
+
+  status <- function(ln){
+    ln[2:8] <- as.numeric(ln[2:8])
+    if(ln[5] < 75){
+      return("Reprovação por falta")
+    } else if(is.na(ln[2]) & is.na(ln[3])& (ln[4] == 0)){
+      return("Reprovação por falta2")
+    } else if(is.na(ln[2]) & is.na(ln[3])& (ln[4] > 0)){
+      return("Sub P1 & Rec")
+    } else if(is.na(ln[2]) & !is.na(ln[3])){
+      return("Sub P1")
+    } else if(is.na(ln[3]) & !is.na(ln[2])){
+      return("Sub P2")
+    } else if(ln[8] >= 5){
+      return("Aprovação")
+    } else if(ln[8] < 5){
+      return("Recuperação")
+    } else{
+      return("Desconhecido")
+    }
+  }
+   
+    
+  dat$res <- sapply(X = dat, FUN = status)
+  dat <- cbind(dat, "Status" = res)
+  View(dat)
+  
+  

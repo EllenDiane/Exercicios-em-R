@@ -1,0 +1,98 @@
+setwd("C:/Users/ellen/Downloads")
+dat <- read.csv("Notas_teste.csv")[, -1]
+View(dat)
+
+#
+
+for(i in 1:length(dat$P1)){
+  dat$P1[i] <- min(10, dat$P1[i])
+}
+
+for(i in 1:length(dat$P2)){
+  dat$P2[i] <- min(10, dat$P2[i])
+}
+
+#
+
+for(i in 1:length(dat$P1)){
+  numero <- dat$P1[i]
+  if(is.na(numero)){
+    numero <- 0
+  }
+  dat$P1[i] <- numero
+}
+
+for(i in 1:length(dat$P2)){
+  numero <- dat$P2[i]
+  if(is.na(numero)){
+    numero <- 0
+  }
+  dat$P2[i] <- numero
+}
+
+#
+
+media_final <- (dat$P1 + dat$P2 + (dat$Listas))
+
+summary(dat)
+
+dat <- cbind(dat,"Media" = media_final)
+View(dat)
+
+
+
+nota2conceito <- function(x){
+  if (x >= 8.5){
+    return("A")
+  } else if((x >= 7) & (x < 8.5)){
+    return("B")
+  } else if((x >= 5) & (x < 7)){
+    return("C")
+  } else if((x >= 4.5) &(x < 5)){
+    return("D")
+  } else if (x < 4.5){
+    return("F")
+  }
+}
+
+
+dat$Conceito <- sapply(dat$Media, nota2conceito)
+dat <- cbind(dat, "Conceito" = Conceito)
+View(dat)
+
+hist(dat$P1, breaks = 0:12)
+hist(dat$P2, breaks = 0:12, add = T)
+
+hist(dat$P1, breaks = 0:12, xlim = c(0,12), col = "red")
+
+library(ggplot2)
+hist(dat$P2, breaks = 0:12, add = T, col = "blue")
+
+
+
+status <- function(ln){
+  ln[2:8] <- as.numeric(ln[2:8])
+  if(ln[5] < 75){
+    return("Reprovação por falta")
+  } else if(is.na(ln[2]) & is.na(ln[3])& (ln[4] == 0)){
+    return("Reprovação por falta2")
+  } else if(is.na(ln[2]) & is.na(ln[3])& (ln[4] > 0)){
+    return("Sub P1 & Rec")
+  } else if(is.na(ln[2]) & !is.na(ln[3])){
+    return("Sub P1")
+  } else if(is.na(ln[3]) & !is.na(ln[2])){
+    return("Sub P2")
+  } else if(ln[8] >= 5){
+    return("Aprovação")
+  } else if(ln[8] < 5){
+    return("Recuperação")
+  } else{
+    return("Desconhecido")
+  }
+}
+
+
+dat$res <- sapply(X = dat, FUN = status)
+dat <- cbind(dat, "Status" = res)
+View(dat)
+

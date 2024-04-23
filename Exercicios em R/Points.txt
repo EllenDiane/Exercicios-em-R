@@ -1,0 +1,13 @@
+
+
+x <- seq(from = -10, to = 10, by = 0.1)
+y <- 16*(sin(x))^2
+
+plot(x, y, type = "l", lty = 4, col = "magenta", lwd = 3)
+points(x, 13*(cos(x))^-1, col = "cyan")
+
+legend (x = "bottomright", legend = c("Função 1", "Função 2"),
+        lty = c(4, 9),
+        col = c("magenta", "cyan"), cex = 1)
+
+

@@ -1,0 +1,145 @@
+
+R version 4.3.0 (2023-04-21 ucrt) -- "Already Tomorrow"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R é um software livre e vem sem GARANTIA ALGUMA.
+Você pode redistribuí-lo sob certas circunstâncias.
+Digite 'license()' ou 'licence()' para detalhes de distribuição.
+
+R é um projeto colaborativo com muitos contribuidores.
+Digite 'contributors()' para obter mais informações e
+'citation()' para saber como citar o R ou pacotes do R em publicações.
+
+Digite 'demo()' para demonstrações, 'help()' para o sistema on-line de ajuda,
+ou 'help.start()' para abrir o sistema de ajuda em HTML no seu navegador.
+Digite 'q()' para sair do R.
+
+> getwd()
+[1] "C:/Users/ellen/Documents"
+> 5+7
+[1] 12
+> 4-8
+[1] -4
+> 55*8
+[1] 440
+> 332/80
+[1] 4.15
+> 4^0
+[1] 1
+> (56+10-70)/8
+[1] -0.5
+> log(x = 9)
+[1] 2.197225
+> rep(x = 33, times = 50)
+ [1] 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33
+[26] 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33 33
+> sum(70, 9857, 364)
+[1] 10291
+> log(x = 7, base = 10)
+[1] 0.845098
+> log(7, 10)
+[1] 0.845098
+> log(base = 10, x = 7)
+[1] 0.845098
+> log(10, 7)
+[1] 1.183295
+> log(x = 10, exp(1))
+[1] 2.302585
+> log(10)
+[1] 2.302585
+> 7+8 #oi professor :)
+[1] 15
+> x <- 2
+> x
+[1] 2
+> x <- 478
+> x
+[1] 478
+> o <- (40, 59, 67)
+Erro: ',' inesperado em "o <- (40,"
+> o <- sum(23, 56, 34)
+> o
+[1] 113
+> u <- o/6
+> u
+[1] 18.83333
+> x <- u
+> x
+[1] 18.83333
+> str(x)
+ num 18.8
+> is()
+Error in is() : argumento "object" ausente, sem padrão
+> Is()
+Error in Is() : não foi possível encontrar a função "Is"
+> x <- 8.75
+> x
+[1] 8.75
+> class(x)
+[1] "numeric"
+> is.numeric(x)
+[1] TRUE
+> y <- 4E7
+> y
+[1] 4e+07
+> class(y)
+[1] "numeric"
+> x <- "casa"
+> x
+[1] "casa"
+> class(x)
+[1] "character"
+> is.character(x)
+[1] TRUE
+> x <- FALSE
+> x
+[1] FALSE
+> class(x)
+[1] "logical"
+> is.logical(x)
+[1] TRUE
+> numeros <- c(4, 65, 77, 68)
+> numeros
+[1]  4 65 77 68
+> class(numeros)
+[1] "numeric"
+> is.vector(numeros)
+[1] TRUE
+> length(numeros)
+[1] 4
+> names(numeros) <- c("n4", "n65", "n77", "n68")
+> names
+function (x)  .Primitive("names")
+> names(numeros)
+[1] "n4"  "n65" "n77" "n68"
+> letras <- c("g", "u", "o")
+> letras
+[1] "g" "u" "o"
+> logico <- c(T, F)
+> logico
+[1]  TRUE FALSE
+> class(logico)
+[1] "logical"
+> numeros[1]
+n4 
+ 4 
+> numeros[c(3,5,7)]
+ n77 <NA> <NA> 
+  77   NA   NA 
+> numeros[1:2]
+ n4 n65 
+  4  65 
+> numeros[-2]
+ n4 n77 n68 
+  4  77  68 
+> numeros["n4"]
+n4 
+ 4 
+> numeros[1] <- 8
+> numeros[1]
+n4 
+ 8 
+> save.image("C:\\Users\\ellen\\Documents\\BCC\\.RData")
+> savehistory(file = "11202320580.Rhistory")
+> 

@@ -1,0 +1,201 @@
+#Tarefa 1
+EllenDiane <- c(20, 21)
+N <- 18
+for(i in 3:N){
+  velho <- EllenDiane[i - 1] + EllenDiane[i - 2]
+  EllenDiane <- c(EllenDiane, velho)
+}
+print(EllenDiane)
+
+#Tarefa 2
+nExclamação <- function(n){
+  if(is.wholenumber(n)){
+    if(n >= 0){
+      return("É positivo e inteiro, continue para o fatorial")
+    } 
+    if(n < 0){
+      return("Não é positivo inteiro, pare por aqui")
+    }
+  } else{
+    return("Não é positivo inteiro, pare por aqui")
+  }
+}
+
+vet <- c(0, 1, 2, 3)
+n <- vet - 1
+for(i in seq(vet)){
+  vet[i] <- vet * n * n - 1
+  print(vet[i])
+}
+
+#Tarefa 3
+set.seed(1)
+B <- matrix(rpois(25, 5), nrow = 5)
+print(B)
+
+for (i in 1:(nrow(B) - 1)) {
+  for (j in (i + 1):ncol(B)) {
+    B[i, j] <- 0
+    }
+}
+
+#Tarefa 4.1
+cursos <- 232
+alunos <- 90
+provas <- 3
+for(i in seq(cursos)){
+  media <- min(abs(rnorm(1, mean = 7, sd = 1)), 10)
+  desvio <- abs(rnorm(1, mean = 1, sd = 1))
+  notas <- matrix(rnorm(alunos*provas, mean = media, sd = desvio), nrow = alunos)
+  RA <- c()
+  for(j in seq(alunos)){
+    RA <- c(RA, as.numeric(paste(sample(1:9, 10, replace = TRUE), collapse = "")))
+  }
+  tabela <- cbind.data.frame("RA" = RA, notas)
+  colnames(tabela)[2:4] <- paste("Prova", 1:3)
+  
+  8
+  
+  write.csv(tabela, paste("Curso", i, ".csv", sep = ""), row.names = FALSE)
+}
+
+cursos <- 232
+for(i in seq(cursos)){
+  tabela <- read.csv(paste("Curso", i, ".csv", sep = ""))
+  medias <- c()
+  for(j in seq(nrow(tabela))){
+    medias <- c(medias, mean(as.numeric(tabela[j, 2:ncol(tabela)])))
+  }
+  medias_tbl <- cbind.data.frame(tabela$RA, "Media" = medias)
+  write.csv(medias_tbl, paste("MediaCurso", i, ".csv", sep = ""), row.names = FALSE)
+  pdf(paste("MediaCurso", i, ".pdf", sep = ""))
+  hist(medias, main = paste("Media do curso", i))
+  abline(v = mean(medias), col = "red")
+  dev.off()
+}
+
+conceito <- function(x){
+  if (x >= 8.5){
+    return("A")
+  } else if((x >= 7) & (x < 8.5)){
+    return("B")
+  } else if((x >= 5) & (x < 7)){
+    return("C")
+  } else if((x >= 4.5) &(x < 5)){
+    return("D")
+  } else if (x < 4.5){
+    return("F")
+  }
+}
+
+conceito(medias_tbl$Media)
+
+#Tarefa 4.2
+i <- 1
+#Tarefa 1
+EllenDiane <- c(20, 21)
+N <- 18
+for(i in 3:N){
+  velho <- EllenDiane[i - 1] + EllenDiane[i - 2]
+  EllenDiane <- c(EllenDiane, velho)
+}
+print(EllenDiane)
+
+#Tarefa 2
+nExclamação <- function(n){
+  if(is.wholenumber(n)){
+    if(n >= 0){
+      return("É positivo e inteiro, continue para o fatorial")
+    } 
+    if(n < 0){
+      return("Não é positivo inteiro, pare por aqui")
+    }
+  } else{
+    return("Não é positivo inteiro, pare por aqui")
+  }
+}
+
+vet <- c(0, 1, 2, 3)
+n <- vet - 1
+for(i in seq(vet)){
+  vet[i] <- vet * n * n - 1
+  print(vet[i])
+}
+
+#Tarefa 3
+set.seed(1)
+B <- matrix(rpois(25, 5), nrow = 5)
+print(B)
+
+for (i in 1:(nrow(B) - 1)) {
+  for (j in (i + 1):ncol(B)) {
+    B[i, j] <- 0
+  }
+}
+
+#Tarefa 4.1
+cursos <- 232
+alunos <- 90
+provas <- 3
+for(i in seq(cursos)){
+  media <- min(abs(rnorm(1, mean = 7, sd = 1)), 10)
+  desvio <- abs(rnorm(1, mean = 1, sd = 1))
+  notas <- matrix(rnorm(alunos*provas, mean = media, sd = desvio), nrow = alunos)
+  RA <- c()
+  for(j in seq(alunos)){
+    RA <- c(RA, as.numeric(paste(sample(1:9, 10, replace = TRUE), collapse = "")))
+  }
+  tabela <- cbind.data.frame("RA" = RA, notas)
+  colnames(tabela)[2:4] <- paste("Prova", 1:3)
+  
+  8
+  
+  write.csv(tabela, paste("Curso", i, ".csv", sep = ""), row.names = FALSE)
+}
+
+cursos <- 232
+for(i in seq(cursos)){
+  tabela <- read.csv(paste("Curso", i, ".csv", sep = ""))
+  medias <- c()
+  for(j in seq(nrow(tabela))){
+    medias <- c(medias, mean(as.numeric(tabela[j, 2:ncol(tabela)])))
+  }
+  medias_tbl <- cbind.data.frame(tabela$RA, "Media" = medias)
+  write.csv(medias_tbl, paste("MediaCurso", i, ".csv", sep = ""), row.names = FALSE)
+  pdf(paste("MediaCurso", i, ".pdf", sep = ""))
+  hist(medias, main = paste("Media do curso", i))
+  abline(v = mean(medias), col = "red")
+  dev.off()
+}
+
+conceito <- function(x){
+  if (x >= 8.5){
+    return("A")
+  } else if((x >= 7) & (x < 8.5)){
+    return("B")
+  } else if((x >= 5) & (x < 7)){
+    return("C")
+  } else if((x >= 4.5) &(x < 5)){
+    return("D")
+  } else if (x < 4.5){
+    return("F")
+  }
+}
+
+conceito(medias_tbl$Media)
+
+#Tarefa 4.2
+tentativa <- 1
+senha <- 123
+i <- 1
+while(tentativa != senha){
+  tentativa <- as.numeric(paste(sample(1:9, 3, replace = TRUE), collapse = ""))
+  i <- i + 1
+  repeat{
+    print(i)
+    if(i >= 1){
+      break()
+    }
+    i <- i + 1
+  }
+}

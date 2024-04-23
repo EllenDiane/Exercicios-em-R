@@ -1,0 +1,37 @@
+setwd("C:/Users/ellen.diane/Downloads")
+dat <- read.csv2("C:/Users/ellen.diane/Downloads/algo.txt")
+View(dat)
+plot(dat$Mozzarela, dat$Engineering, main = "regressão Linear")
+
+queijo <- lm(Engineering ~ Mozzarela, dat)
+abline(queijo, col="pink")
+#legendas
+legend("bottomright", legend = c("Inclinação da reta: 172", "intercepto: 115", "r.squared: 0.92"),
+                                 col = c("black"))
+#confientes
+queijo$coefficients
+ERREQUADRADO <- summary(queijo)
+ERREQUADRADO$r.squared
+
+##Previsão 1
+## Fazendo a previsão
+xout <- seq(5, 10, by = 0.1)
+previsao <- predict(queijo, newdata=data.frame(Mozzarela=xout))
+print(previsao)
+plot(dat$Mozzarela, dat$previsão)
+
+##Normal
+previsao <- predict(queijo, newdata=data.frame(Mozzarela=xout))
+plot(dat$Mozzarela, dat$Engineering,
+     xlim= range(xout),
+     ylim=c(min(previsao), max(previsao)))
+abline(queijo, col="blue")
+
+
+#Previsão Esdrúxula
+xout <- seq(10, 100, by = 0.1)
+previsao <- predict(queijo, newdata = data.frame(Mozzarela=xout))
+plot(dat$Mozzarela, dat$Engineering, main = "Previsão Esdrúxula",
+     xlim = range(xout),
+     ylim = c(min(previsao), max(previsao)))
+abline (queijo, col= "pink")
